@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "872dd740-1873-47ff-8c44-b9c477a99ef2",
+		"name": "UserTesting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1996,\n    \"username\": \"butoxors\",\n    \"firstName\": \"Ivan\",\n    \"lastName\": \"Khoroshevskiy\",\n    \"email\": \"email@student.csn.khai.edu\",\n    \"password\": \"qwerty123\",\n    \"phone\": \"911\",\n    \"userStatus\": 1\n}"
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cd18d23b-9b84-466b-9cab-cedacdca6a1e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Finding username\", function () {",
+							"    pm.expect(pm.response.text()).to.include(pm.environment.get(\"username\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/butoxors",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"butoxors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteUser",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/butoxors",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"butoxors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "userLogIn",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/login?username=butoxors&password=qwerty1232",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "butoxors"
+						},
+						{
+							"key": "password",
+							"value": "qwerty1232"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createWithArray",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": 1,\n        \"username\": \"VgE5NvQ5wp\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"password\": \"string\",\n        \"phone\": \"string\",\n        \"userStatus\": 0\n    },\n    {\n        \"id\": 2,\n        \"username\": \"VgE5NvQ5wp9\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"password\": \"string\",\n        \"phone\": \"string\",\n        \"userStatus\": 0\n    }\n]"
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/user/createWithArray",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"user",
+						"createWithArray"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
